@@ -1,0 +1,11 @@
+id = "rhai"
+name = "rhai"
+version = "0.0.1"
+schema_version = 1
+authors = ["ElKowar <dev@elkowar.dev>"]
+description = "Syntax highlighting for Rhai files."
+repository = "https://github.com/elkowar/zed-rhai"
+
+[grammars.rhai]
+repository = "https://github.com/elkowar/tree-sitter-rhai"
+commit = "9effbd906ef4bcd29445875beee0daa74341e068"
