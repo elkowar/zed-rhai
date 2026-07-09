@@ -49,7 +49,8 @@
   key: [(ident) (lit_str)] @property
   value: (Expr))
 
-(ident) @variable
+(Path (ident) @variable)
+(PatIdent (ident) @variable)
 
 (ExprCall fn_name: (Expr) @function)
 (ExprFn fn_name: (FnDeclName) @function)
