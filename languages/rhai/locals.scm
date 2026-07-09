@@ -5,6 +5,11 @@
 (ExprDeclareVar
     name: (_) @local.definition.var)
 
+(ExprFor
+    (Pat
+        (PatIdent
+            (ident) @local.definition.var)))
+
 (ExprFn
     fn_name: (_) @local.definition.function)
 

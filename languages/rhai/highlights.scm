@@ -1,5 +1,3 @@
-
-
 (str_template_expr ["${" "}"] @punctuation.bracket)
 (SwitchArm (Expr) "=>" @punctuation.delimiter (Expr))
 
@@ -7,30 +5,51 @@
 "," @punctuation.delimiter
 [ "(" ")" "{" "}" "[" "]" "#{" ] @punctuation.bracket
 
+[
+  "as"
+  "break"
+  "catch"
+  "const"
+  "do"
+  "else"
+  "export"
+  "fn"
+  "for"
+  "if"
+  "in"
+  "import"
+  "let"
+  "loop"
+  "private"
+  "return"
+  "switch"
+  "throw"
+  "try"
+  "until"
+  "while"
+] @keyword
 
-[ "if" "else" "switch" ] @keyword.conditional
-[ "do" "while" "loop" "until" "for" "in" "break" ] @keyword.repeat
-[ "throw" "try" "catch"] @keyword.exception
-[ "import" "export" "as" ] @keyword.import
-["return"] @keyword.return
-[ "fn" "private" "let" "const"] @keyword
-
-[".." "..=" "||" "&&" "==" "!=" "<=" ">=" "<" ">" "+" "*" "**" "-" "/" "%" "<<" ">>" "^" "|" "&" "=" "+=" "/=" "*=" "**=" "%=" ">>=" "<<=" "-=" "|=" "&=" "^=" "??"] @operator
+(ExprContinue) @keyword
 
 (lit_bool) @boolean
 (lit_str) @string
+(lit_char) @string.special.symbol
 (lit_int) @number
 (lit_float) @number
 [(comment_line_doc) (comment_block_doc)] @comment.doc
+[(comment_line) (comment_block)] @comment
 
-(binop) @operator
+((binop) @keyword
+  (#eq? @keyword "in"))
+
+((binop) @operator
+  (#not-eq? @operator "in"))
 
 (ObjectField
   key: [(ident) (lit_str)] @property
   value: (Expr))
 
-
 (ident) @variable
 
-(ExprCall fn_name: (Expr) @function.name)
+(ExprCall fn_name: (Expr) @function)
 (ExprFn fn_name: (FnDeclName) @function)
